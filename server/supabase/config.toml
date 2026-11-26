@@ -1,0 +1,13 @@
+# Supabase 설정. 개발용 프로젝트에 이을 때 `supabase link`가 이 파일을 읽는다.
+# 프로젝트 번호와 비밀 값은 여기에 적지 않는다.
+
+project_id = "om"
+
+# Data API는 끈다. 앱은 표를 직접 읽지 못하고 서버 API만 부른다. 기술설계_3 2.1
+# 호스팅된 프로젝트에서는 대시보드에서도 꺼야 한다. docs/개발환경.md에 있다.
+[api]
+enabled = false
+
+# 앱 서버. Supabase 관문의 기본 인증 검사를 끄고 공통 틀이 직접 검사한다. 기술설계_4 2.3
+[functions.api]
+verify_jwt = false

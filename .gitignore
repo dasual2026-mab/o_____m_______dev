@@ -1,0 +1,30 @@
+# 비밀 값. 저장소에 넣지 않는다.
+.env
+.env.*
+!.env.example
+*.pem
+*.p8
+*.p12
+*.keystore
+*.jks
+google-services.json
+GoogleService-Info.plist
+service-account*.json
+
+# 도구가 만든 것
+node_modules/
+dist/
+build/
+.expo/
+.turbo/
+coverage/
+*.log
+.DS_Store
+Thumbs.db
+
+# Supabase 로컬 상태
+server/supabase/.branches/
+server/supabase/.temp/
+
+# Claude Code의 내 컴퓨터 설정
+.claude/settings.local.json
