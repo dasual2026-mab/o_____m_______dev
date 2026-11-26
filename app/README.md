@@ -13,9 +13,14 @@ Expo SDK 58과 React Native 0.88로 만든 앱이다. 뼈대는 T-353에서 만�
 | 명령 | 하는 일 |
 |---|---|
 | `npm install` | 도구를 내려받는다. 처음 한 번 |
+| `npx expo login` | Expo 계정으로 로그인한다. 처음 한 번. 브라우저가 열린다 |
 | `npx expo start` | 개발 서버를 띄운다. 휴대폰의 Expo Go로 화면의 QR을 찍으면 앱이 열린다 |
 | `npx expo start --web` | 브라우저에서 미리 본다. 서버 요청은 브라우저 보안 규칙(CORS) 때문에 실패할 수 있다 |
 | `npx tsc --noEmit` | 형식 검사 |
+
+휴대폰 Expo Go와 컴퓨터가 같은 Expo 계정으로 로그인되어 있어야 앱이 열린다.
+계정은 대표가 만든 `mab_milli`이고, 조직은 `MAB`(slug `mab2026`)다. 비밀번호는 여기에 적지 않는다.
+휴대폰과 컴퓨터는 같은 와이파이에 있어야 한다.
 
 ## 폴더
 
