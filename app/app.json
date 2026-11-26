@@ -1,0 +1,48 @@
+{
+  "expo": {
+    "name": "O_____M_______",
+    "slug": "om",
+    "scheme": "om",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "ios": {
+      "bundleIdentifier": "com.mab.om",
+      "supportsTablet": false
+    },
+    "android": {
+      "package": "com.mab.om",
+      "adaptiveIcon": {
+        "backgroundColor": "#E7DBC1",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      },
+      "predictiveBackGestureEnabled": false
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-secure-store",
+      "expo-status-bar",
+      "expo-font",
+      [
+        "expo-splash-screen",
+        {
+          "backgroundColor": "#E7DBC1",
+          "image": "./assets/splash-icon.png",
+          "imageWidth": 200
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true
+    },
+    "extra": {
+      "apiBase": "https://pfplsdswdkbmymvrynic.supabase.co/functions/v1/api"
+    }
+  }
+}
