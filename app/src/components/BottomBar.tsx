@@ -1,6 +1,7 @@
 import { router, type Href } from "expo-router";
 import { Pressable, StyleSheet, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { lineWidth } from "../theme/ink";
 import { useTheme } from "../theme/ThemeProvider";
 import { LAYOUT } from "../theme/tokens";
 import { IconBubble, IconGear } from "./icons";
@@ -38,6 +39,8 @@ export function BottomBar({ active, news, avatar }: BottomBarProps) {
   const { c } = useTheme();
   const insets = useSafeAreaInsets();
   const home = Math.max(insets.bottom - 12, 8);
+  // 어두운 윗선은 0.5 굵게 그리되 바 높이는 그대로 둔다(안쪽으로 굵어짐)
+  const lw = lineWidth(LAYOUT.bottomBarLine, c.line);
   last = active;
 
   const press = (key: TabKey, href: Href) => {
@@ -46,8 +49,8 @@ export function BottomBar({ active, news, avatar }: BottomBarProps) {
   };
 
   return (
-    <View style={[s.bar, { borderTopColor: c.line, backgroundColor: c.bgBase, paddingBottom: home }]}>
-      <View style={s.tabs}>
+    <View style={[s.bar, { borderTopColor: c.line, borderTopWidth: lw, backgroundColor: c.bgBase, paddingBottom: home }]}>
+      <View style={[s.tabs, { paddingTop: 6.5 - (lw - LAYOUT.bottomBarLine) }]}>
         {TABS.map((t, i) => {
           const on = t.key === active;
           const ink = on ? c.textPrimary : c.textTertiary;

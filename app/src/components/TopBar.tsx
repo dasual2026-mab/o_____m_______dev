@@ -1,5 +1,6 @@
 import { router } from "expo-router";
 import { Pressable, StyleSheet, View } from "react-native";
+import { lineWidth } from "../theme/ink";
 import { useTheme } from "../theme/ThemeProvider";
 import { LAYOUT } from "../theme/tokens";
 import { IconBack, IconTokenPlus } from "./icons";
@@ -25,7 +26,7 @@ export function TopBar({ tokens, onTokens, onLogo, onBack }: TopBarProps) {
   const back = onBack ?? (() => router.canGoBack() && router.back());
 
   return (
-    <View style={[s.bar, { borderBottomColor: c.line }]}>
+    <View style={[s.bar, { borderBottomColor: c.line, borderBottomWidth: lineWidth(LAYOUT.topBarLine, c.line) }]}>
       <Pressable onPress={back} accessibilityRole="button" accessibilityLabel="뒤로" hitSlop={0} style={({ pressed }) => [s.back, pressed && s.backDown]}>
         <View style={{ transform: [{ translateY: -1.35 }] }}>
           <IconBack color={c.textPrimary} />
@@ -57,7 +58,6 @@ export function TopBar({ tokens, onTokens, onLogo, onBack }: TopBarProps) {
 const s = StyleSheet.create({
   bar: {
     height: LAYOUT.topBar,
-    borderBottomWidth: LAYOUT.topBarLine,
     paddingLeft: 4,
     paddingRight: 14,
     flexDirection: "row",

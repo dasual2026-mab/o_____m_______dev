@@ -127,13 +127,7 @@ export const PALETTES: Record<ThemeName, Palette> = {
 /** 본문 굵기. 베이지 480, 블랙 450. 명세 §3, D-029 */
 export const BODY_WEIGHT: Record<ThemeName, number> = { beige: 480, black: 450 };
 
-/**
- * 베이지 배경의 '한 단계 굵게'(명세 §3).
- * 프로토타입은 글자 테두리 .008em으로 그리는데 React Native에는 글자 테두리가 없다.
- * 같은 굵기 차(+40)를 가변 폰트 굵기 값에 더해 대신 그린다. 0이면 끈다.
- * 차이와 판단 요청은 Claude outputs/T353_기록.md 3장에 있다.
- */
-export const BEIGE_WEIGHT_BOOST = 40;
+// 어두운 잉크 굵게(글자 +40, 아이콘 선 ×1.12)는 theme/ink.ts에 있다. 배경 모드가 아니라 잉크 색으로 정한다(D-475).
 
 /** 본문 양옆 여백. 명세 §4.7 */
 export const GX = 12;

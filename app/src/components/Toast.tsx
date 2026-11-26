@@ -68,11 +68,11 @@ export function ToastProvider({ children }: { children: ReactNode }) {
         ]}
       >
         <View style={[s.dot, { backgroundColor: c.toastInk }]} />
-        <Txt v="toast" noBoost style={[s.tx, { color: c.toastInk }]}>
+        <Txt v="toast" style={[s.tx, { color: c.toastInk }]}>
           {msg}
         </Txt>
         <Pressable onPress={hide} accessibilityLabel="토스트 닫기" hitSlop={10} style={({ pressed }) => [s.x, pressed && { opacity: 0.6 }]}>
-          <IconClose size={14} color={c.toastInk} noBoost />
+          <IconClose size={14} color={c.toastInk} />
         </Pressable>
       </Animated.View>
     </ToastContext.Provider>

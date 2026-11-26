@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { Animated, Easing, Pressable, StyleSheet, View, type LayoutChangeEvent } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { lineWidth } from "../theme/ink";
 import { useTheme } from "../theme/ThemeProvider";
 import { SPRING } from "../theme/tokens";
 import { IconClose } from "./icons";
@@ -51,6 +52,9 @@ export function BottomSheet({ visible, onClose, title, desc, closeButton = true,
 
   if (!mounted) return null;
   const home = Math.max(insets.bottom - 12, 8);
+  // 어두운 테두리는 0.5 굵게, 안 내용 자리는 그대로
+  const bw = lineWidth(1, c.line);
+  const inset = bw - 1;
 
   return (
     <Portal z={31}>
@@ -62,7 +66,7 @@ export function BottomSheet({ visible, onClose, title, desc, closeButton = true,
         accessibilityViewIsModal
         style={[
           s.sheet,
-          { backgroundColor: c.bgBase, borderColor: c.line, paddingBottom: 26 + home },
+          { backgroundColor: c.bgBase, borderColor: c.line, borderWidth: bw, borderBottomWidth: 0, paddingTop: 20 - inset, paddingHorizontal: 11 - inset, paddingBottom: 26 + home },
           { transform: [{ translateY: a.interpolate({ inputRange: [0, 1], outputRange: [h * 1.03, 0] }) }] },
         ]}
       >

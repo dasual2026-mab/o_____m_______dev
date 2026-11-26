@@ -9,6 +9,7 @@ import { Hero } from "../components/Hero";
 import { Screen } from "../components/Screen";
 import { useToast } from "../components/Toast";
 import { Txt } from "../components/Txt";
+import { lineWidth } from "../theme/ink";
 import { useTheme } from "../theme/ThemeProvider";
 import { GX } from "../theme/tokens";
 
@@ -39,13 +40,13 @@ export default function DevParts() {
         onChange={setCats}
         exclusive={[["rep", "blk"]]}
       />
-      <View style={[s.top, { backgroundColor: t.c.line }]} />
+      <View style={[s.top, { backgroundColor: t.c.line, height: lineWidth(1, t.c.line) }]} />
       <FoldRow title="받은 6 · 9 사인">다시 시작하면 0부터 쌓입니다.</FoldRow>
       <FoldRow title="내 대화방과 보관함">익명 메시지와 답장, 신고 · 차단 보관함이 모두 삭제됩니다.</FoldRow>
       <FoldRow title="보유 토큰" initialOpen divider={false}>
         충전 토큰 169개는 환불받을 수 있으며(결제한 날부터 7일이 지나면 수수료 10%), 무료 토큰은 사라집니다.
       </FoldRow>
-      <View style={[s.end, { backgroundColor: t.c.lineSoft }]} />
+      <View style={[s.end, { backgroundColor: t.c.lineSoft, height: lineWidth(1, t.c.lineSoft) }]} />
 
       <View style={s.btns}>
         <Button label={t.name === "beige" ? "블랙 배경으로 보기" : "베이지 배경으로 보기"} onPress={() => t.setTheme(t.name === "beige" ? "black" : "beige")} />

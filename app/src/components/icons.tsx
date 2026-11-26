@@ -1,26 +1,20 @@
 // 아이콘. 명세 §8 아이콘 카탈로그와 프로토타입의 인라인 SVG 그대로다.
 // 선 아이콘은 뷰박스 24, 선 1.7, 끝 square, 꺾임 miter.
-// 베이지 배경에서는 선 굵기를 1.12배로 그린다(명세 §3 '베이지 배경 굵게').
+// 어두운 잉크의 아이콘은 선 굵기를 1.12배로 그린다(명세 §3, D-475).
+// 기준은 배경 모드가 아니라 아이콘 색이다. 어두운 면 위 밝은 아이콘은 원래 굵기다.
 
 import Svg, { Circle, Path } from "react-native-svg";
-import { useTheme } from "../theme/ThemeProvider";
+import { DARK_INK_STROKE_SCALE, isDarkInk } from "../theme/ink";
 
 interface IconProps {
   size: number;
   color: string;
   /** 기본 1.7 */
   stroke?: number;
-  /** 어두운 면 위 밝은 아이콘처럼 굵게를 빼는 곳 */
-  noBoost?: boolean;
 }
 
-function useStroke(stroke: number, noBoost?: boolean) {
-  const t = useTheme();
-  return t.name === "beige" && !noBoost ? stroke * 1.12 : stroke;
-}
-
-function Line({ size, color, stroke = 1.7, noBoost, children }: IconProps & { children: React.ReactNode }) {
-  const sw = useStroke(stroke, noBoost);
+function Line({ size, color, stroke = 1.7, children }: IconProps & { children: React.ReactNode }) {
+  const sw = isDarkInk(color) ? stroke * DARK_INK_STROKE_SCALE : stroke;
   return (
     <Svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={sw} strokeLinecap="square" strokeLinejoin="miter">
       {children}
@@ -67,18 +61,18 @@ export const IconSearch = (p: IconProps) => (
 
 /**
  * 뒤로 '<'. Asimovian less 글리프 윤곽(명세 §4.1). 상자 13 × 21.
- * 베이지에서는 같은 색 덧선 8.9(뷰박스 619)을 더한다.
+ * 어두운 잉크면 같은 색 덧선 8.9(뷰박스 619)을 더한다.
  */
 export function IconBack({ color }: { color: string }) {
-  const t = useTheme();
+  const dark = isDarkInk(color);
   return (
     <Svg width={13} height={21} viewBox="0 -850 619.048 1000">
       <Path
         transform="scale(1 -1)"
         d="M545 59 55 269V352L545 562V477L178 311L545 144Z"
         fill={color}
-        stroke={t.name === "beige" ? color : "none"}
-        strokeWidth={t.name === "beige" ? 8.9 : 0}
+        stroke={dark ? color : "none"}
+        strokeWidth={dark ? 8.9 : 0}
       />
     </Svg>
   );
@@ -86,10 +80,10 @@ export function IconBack({ color }: { color: string }) {
 
 /**
  * 토큰 '+'. Asimovian plus 윤곽의 팔을 늘린 꼴(명세 §4.1). 상자 15 × 25.
- * 바탕색 선으로 깎는다. 베이지 6.52, 블랙 14.
+ * 바탕색 선으로 깎는다. 어두운 잉크면 6.52(굵게), 밝은 잉크면 14.
  */
 export function IconTokenPlus({ color, bg }: { color: string; bg: string }) {
-  const t = useTheme();
+  const dark = isDarkInk(color);
   return (
     <Svg width={15} height={25} viewBox="0 -850 600 1000" style={{ overflow: "visible" }}>
       <Path
@@ -97,7 +91,7 @@ export function IconTokenPlus({ color, bg }: { color: string; bg: string }) {
         d="M6 211V313H244V555H354V313H592V211H354V-31H244V211Z"
         fill={color}
         stroke={bg}
-        strokeWidth={t.name === "beige" ? 6.52 : 14}
+        strokeWidth={dark ? 6.52 : 14}
       />
     </Svg>
   );

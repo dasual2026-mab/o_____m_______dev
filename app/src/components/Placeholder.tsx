@@ -1,5 +1,6 @@
 import { router, type Href } from "expo-router";
 import { Pressable, StyleSheet, View } from "react-native";
+import { lineWidth } from "../theme/ink";
 import { useTheme } from "../theme/ThemeProvider";
 import { GX } from "../theme/tokens";
 import { Hero } from "./Hero";
@@ -22,11 +23,11 @@ export function Placeholder({ no, title, links = [] }: { no: string; title: stri
       <Txt v="caption" c="tertiary" style={s.note}>
         {`${no} 빈 화면입니다.`}
       </Txt>
-      <View style={[s.list, { borderTopColor: c.line }]}>
+      <View style={[s.list, { borderTopColor: c.line, borderTopWidth: lineWidth(1, c.line) }]}>
         {links.map(l => (
           <Pressable key={String(l.href)} onPress={() => router.push(l.href)} style={({ pressed }) => [s.row, pressed && { backgroundColor: c.bgSunken }]}>
             <Txt v="rowTitle">{l.label}</Txt>
-            <View style={[s.line, { backgroundColor: c.lineSoft }]} />
+            <View style={[s.line, { backgroundColor: c.lineSoft, height: lineWidth(1, c.lineSoft) }]} />
           </Pressable>
         ))}
       </View>

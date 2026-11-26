@@ -1,4 +1,5 @@
 import { Pressable, StyleSheet, type StyleProp, type ViewStyle } from "react-native";
+import { lineWidth } from "../theme/ink";
 import { useTheme } from "../theme/ThemeProvider";
 import { Txt } from "./Txt";
 
@@ -15,7 +16,7 @@ export interface ButtonProps {
 
 /**
  * 긴 버튼. 명세 §5.1. 높이 44, 알약 모서리, 14px.
- * 채운 버튼 글자는 본문 굵기이고 어두운 면 위라 베이지 '굵게'를 빼고 그린다(명세 §3).
+ * 채운 버튼 글자는 본문 굵기다. 굵게는 글자색으로 정한다(베이지는 밝은 글자라 원래 굵기, 블랙은 검은 글자라 굵게).
  */
 export function Button({ label, onPress, kind = "cta", disabled, onDisabledPress, style }: ButtonProps) {
   const { c } = useTheme();
@@ -27,13 +28,13 @@ export function Button({ label, onPress, kind = "cta", disabled, onDisabledPress
       accessibilityState={{ disabled: !!disabled }}
       style={({ pressed }) => [
         s.btn,
-        cta ? { backgroundColor: c.btnFill } : { borderWidth: 1, borderColor: c.line },
+        cta ? { backgroundColor: c.btnFill } : { borderWidth: lineWidth(1, c.line), borderColor: c.line },
         disabled && { opacity: 0.4 },
         pressed && !disabled && { opacity: 0.85, transform: [{ scale: 0.98 }] },
         style,
       ]}
     >
-      <Txt v={cta ? "cta" : "ghost"} noBoost={cta} style={{ color: cta ? c.btnInk : c.textPrimary }}>
+      <Txt v={cta ? "cta" : "ghost"} style={{ color: cta ? c.btnInk : c.textPrimary }}>
         {label}
       </Txt>
     </Pressable>

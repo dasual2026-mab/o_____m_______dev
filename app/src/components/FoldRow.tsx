@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { Animated, Easing, Pressable, StyleSheet, View, type LayoutChangeEvent } from "react-native";
+import { lineWidth } from "../theme/ink";
 import { useTheme } from "../theme/ThemeProvider";
 import { GX, SPRING } from "../theme/tokens";
 import { IconChevronDown } from "./icons";
@@ -74,7 +75,7 @@ export function FoldRow({ title, children, initialOpen = false, open, onToggle, 
           <IconChevronDown size={14} color={c.textTertiary} />
         </Animated.View>
       </View>
-      {divider && <View style={[s.line, { backgroundColor: c.lineSoft }]} />}
+      {divider && <View style={[s.line, { backgroundColor: c.lineSoft, height: lineWidth(1, c.lineSoft) }]} />}
     </Pressable>
   );
 }
