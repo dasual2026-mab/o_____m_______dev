@@ -206,9 +206,8 @@ grant insert on core.faces, core.face_jobs to svc_jobs;
 
 drop function core._grant_sweep(regclass);
 
--- 4. 설계 문서의 흐름에 꼭 필요해 7장의 표에 더한 권한 -------------------
--- 7장의 표에는 없지만 같은 문서 4장과 6장의 차례를 하려면 있어야 한다.
--- 작업 기록 T352_기록.md 3장에 까닭을 적었다. 기술설계_3 7장에 옮겨 적을 때까지 여기 모아 둔다.
+-- 4. 4장과 6장의 흐름에 필요해 7장의 표에 더한 권한 ----------------------
+-- 대표 승인 2026-11-26으로 기술설계_3 7장에 옮겨 적었다.
 grant insert on core.sign_counts to svc_app;                       -- 4.1 계정을 만들 때 받은 수 줄을 만든다
 grant update (read_at) on core.send_logs to svc_app;               -- 4.4 발송 기록의 확인한 때를 적는다
 grant insert on core.sanctions to svc_app;                         -- 4.1 다시 시작할 때 이어 갈 처분을 옮긴다
